@@ -15,7 +15,7 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.example.android.wearable.watchface" >
+        package="com.andrewia.android.wearable.annotationface" >
 
     <uses-sdk android:minSdkVersion="18"
               android:targetSdkVersion="23" />
@@ -40,7 +40,7 @@
             android:theme="@style/AppTheme" >
 
         <activity
-                android:name="com.andrewia.android.wearable.com.andrewia.annotationface.AnalogAndCardBoundsWatchFaceConfigActivity"
+                android:name=".AnalogAndCardBoundsWatchFaceConfigActivity"
                 android:label="@string/app_name">
             <intent-filter>
                 <action android:name="com.example.android.wearable.watchface.CONFIG_ANALOG" />
@@ -51,7 +51,7 @@
         </activity>
 
         <activity
-                android:name="com.andrewia.android.wearable.com.andrewia.annotationface.DigitalWatchFaceCompanionConfigActivity"
+                android:name=".DigitalWatchFaceCompanionConfigActivity"
                 android:label="@string/app_name">
             <intent-filter>
                 <action android:name="com.example.android.wearable.watchface.CONFIG_DIGITAL" />
@@ -63,7 +63,7 @@
         <!-- This activity is needed to allow the user to authorize Google Fit for the Fit Distance
              WatchFace (required to view distance). -->
         <activity
-            android:name="com.andrewia.android.wearable.com.andrewia.annotationface.FitDistanceWatchFaceConfigActivity"
+            android:name=".FitDistanceWatchFaceConfigActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="com.example.android.wearable.watchface.CONFIG_FIT_DISTANCE" />
@@ -73,7 +73,7 @@
         </activity>
 
         <activity
-                android:name="com.andrewia.android.wearable.com.andrewia.annotationface.OpenGLWatchFaceConfigActivity"
+                android:name=".OpenGLWatchFaceConfigActivity"
                 android:label="@string/app_name">
             <intent-filter>
                 <action android:name="com.example.android.wearable.watchface.CONFIG_OPENGL" />

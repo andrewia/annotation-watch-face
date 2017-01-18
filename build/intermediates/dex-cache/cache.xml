@@ -3,129 +3,120 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
-        <dex dex="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-8.4.0_61d093663f5334cd65354f1871e885524c6b00e7\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="a8412b654dab86d57bf90683367488211c8a81f1">
-        <dex dex="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-8.4.0_a9d7749df3ade1aa5f73178c065135eaa0deeed4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
-        <dex dex="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_c519a6db5f2c33c464b0c9cb0110ba94378a4ad2\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jar="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
-        <dex dex="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_70d0e50ee45f77fbe97adaae2954d61baa8c48ef\classes.dex" />
+        <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_f28b68261bd5236ec2f75001f6938c4e921279e9\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
-        <dex dex="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-8.4.0_ca7c18f2e30279ef82e926b87801dd136b0ccf4c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="c54246475c1bb64ac6857d1320364bfbfeda2c46">
-        <dex dex="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-fitness-8.4.0_19632c04ad024a8eb1cc2ffb0b08a85c7c1d7aba\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\exploded-aar\com.android.support\support-v13\23.3.0\jars\libs\internal_impl-23.3.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="8813bdcf7583107c4873150075d17c8072ec50cf">
-        <dex dex="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_76d00e2a1b2cad236c7c244afd9005e37f2faa0c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\exploded-aar\com.google.android.support\wearable\2.0.0-alpha1\jars\classes.jar"
+        jar="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\exploded-aar\com.google.android.support\wearable\2.0.0-alpha1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="198f86964d1fe34215742672a4e095f916f0f4d9">
-        <dex dex="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.support-wearable-2.0.0-alpha1_bbfb86e3941b0e79ecda315bdf3e5c664024d6ee\classes.dex" />
+        <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.support-wearable-2.0.0-alpha1_06f6c471a6a58831a8b223dda91b8aeeda849f49\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\exploded-aar\com.android.support\support-v13\23.3.0\jars\classes.jar"
+        jar="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.4.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="a809555a2599054c3dcd1bf82b089315ac3a11df">
-        <dex dex="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v13-23.3.0_3313a9bad2c056e2ab6475a75d699ded667be498\classes.dex" />
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-8.4.0_f52e0074882e8e8f777a42c4fd5d3708d13c871b\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\exploded-aar\com.android.support\palette-v7\23.3.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="d41792854b7fb173e61c2bfea5044fd47df76114">
-        <dex dex="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-palette-v7-23.3.0_6122f7022c46418f20e4180dc4adf9d883da5684\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="b1d879f671937bce00cf4eac10a4ec6ba561ad06">
-        <dex dex="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_f47e2185ec540377ebe3c72687b50fb866ed71c2\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
-        <dex dex="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.0.1_26e570985a3e7db1450c879258389e52ef4ffe37\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="3cef3236cff35dc52a91b18aa167d48303274123">
-        <dex dex="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_03db5cae4342bdc6f559d4a946a144c7f4c35559\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.4.0\jars\classes.jar"
+        jar="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.4.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="04de44f90606c77f3b28cf44861f306290505aac">
-        <dex dex="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-8.4.0_51780662489aa8d5cdbd5594a72e715a4a58bb65\classes.dex" />
+        <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-8.4.0_2480157443db96fdd1db9be0880717c5cc075556\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c54246475c1bb64ac6857d1320364bfbfeda2c46">
+        <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-fitness-8.4.0_7200f7f49b7d22685abb2db1cf2975c9f3ef5729\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="e167a34eaca0b31704212f43f9576ea84e05046f">
+        <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wearable-8.4.0_8918b05cb0f9bf384e5e34adb380689e3bf155c5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\exploded-aar\com.android.support\palette-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d41792854b7fb173e61c2bfea5044fd47df76114">
+        <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-palette-v7-23.3.0_1d077f0ca5c03b1d28bd85a82b78277f29a74984\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.0.1_bc7b86c1eca399f006a315e77c1c5f311456e4dc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="00945b987a33d9fe5a2447ae56501f8675b265d4">
+        <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_9d4a8add454082bd320b8e7b3fee7c7d3515e66d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="a8412b654dab86d57bf90683367488211c8a81f1">
+        <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-8.4.0_78162a57fb76c8347dc9df6be6d0047fc12eafbb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-8.4.0_ed89b890530920500d7c1c3f45c2ae45b27f6f3c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_3e62a9b2ffe31b832cd07cb58aeadccfb385cc63\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\exploded-aar\com.android.support\support-v13\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="a809555a2599054c3dcd1bf82b089315ac3a11df">
+        <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v13-23.3.0_1dfa20595b9ca027f2c838fb2174a88c90bf73df\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -134,16 +125,25 @@
         optimize="true"
         revision="23.0.3"
         sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
-        <dex dex="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.3.0_30c2c92b5fa85d706ad643142955234639174238\classes.dex" />
+        <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.3.0_30c2c92b5fa85d706ad643142955234639174238\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.4.0\jars\classes.jar"
+        jar="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\exploded-aar\com.android.support\support-v13\23.3.0\jars\libs\internal_impl-23.3.0.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="e167a34eaca0b31704212f43f9576ea84e05046f">
-        <dex dex="C:\Users\Admin\Desktop\First Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wearable-8.4.0_0e8617564b9f9acba27305b1ead43c1f93b3ae6e\classes.dex" />
+        sha1="8813bdcf7583107c4873150075d17c8072ec50cf">
+        <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_f9a235de06d25785ec59f94cdec4009071b83bee\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="6f39f670c90887745c32d891d8975850b971bc28">
+        <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_a7aac2deda8f6c030c3c984dc2d1062f0ecf2d36\classes.dex" />
     </item>
 
 </items>
