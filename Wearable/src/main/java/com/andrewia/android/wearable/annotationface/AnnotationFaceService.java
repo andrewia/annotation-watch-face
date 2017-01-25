@@ -418,6 +418,7 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
 
             final float hourHandOffset = mCalendar.get(Calendar.MINUTE) / 2f;
             final float hoursRotation = (mCalendar.get(Calendar.HOUR) * 30) + hourHandOffset;
+            Log.i("ANNOCALC", "Hour hand rotation is " + hoursRotation);
 
             /*
              * Find appropriate locations for the annotation boxes.
@@ -456,7 +457,7 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
             */
 
             boolean drawAnnotationBelowHourHand = false;
-            if(minutesRotation > 90 && minutesRotation < 270){
+            if(hoursRotation > 90 && hoursRotation < 270){
                 drawAnnotationBelowHourHand = true;
             }
 
@@ -481,20 +482,17 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
             }
             */
 
-            //TODO: Annotation box moves too far in each direction
-            //TODO: Make offset actually scoot box left and right with hand instead of just widening and narrowing
+            //TODO: Fix bound calculation
 
-            int xAnnotationOffset = (int)(Math.sin(hoursRotation) * (mCenterY / 12));
+            int xAnnotationOffset = (int)(Math.sin((hoursRotation) * (mCenterY / 12)));
+            Log.i("ANNOCALC", "Annotation x offset is " + xAnnotationOffset);
+            int bound = (int)(mCenterY - (Math.cos(Math.toRadians(hoursRotation)) * sHourHandLength));
+            //Log.i("ANNOCALC", "General bound is " + bound + " from center " + mCenterY + " and length " + sHourHandLength + " calculated into y offset " + (Math.cos(Math.toRadians(hoursRotation)) * sHourHandLength));
+            //Log.i("ANNOCALC", "Cosine operation results in " + Math.cos(hoursRotation));
             if(drawAnnotationBelowHourHand){
-                Log.i("ANNODRAW", "Drawing annotation below hour hand");
-                int topBound = (int)(mCenterY + (Math.sin(hoursRotation) * sHourHandLength));
-                Log.i("ANNODRAW", "Bottom bounds is " + topBound + " and x offset is " + xAnnotationOffset);
-                mMainBoxBounds.set(xAnnotationOffset, topBound, (int)(2 * mCenterX) - xAnnotationOffset, topBound + (int)(mCenterY / 3));
+                mMainBoxBounds.set((int)(mCenterY / 8) + xAnnotationOffset, bound, (int)(2 * mCenterX) - (int)(mCenterY / 8) + xAnnotationOffset, bound + (int)(mCenterY / 3));
             } else{
-                Log.i("ANNODRAW", "Drawing annotation above hour hand");
-                int bottomBound = (int)(mCenterY - (Math.sin(hoursRotation) * sHourHandLength));
-                Log.i("ANNODRAW", "Bottom bounds is " + bottomBound + " and x offset is " + xAnnotationOffset);
-                mMainBoxBounds.set(xAnnotationOffset, bottomBound - (int)(mCenterY / 3), (int)(2 * mCenterX) - xAnnotationOffset, bottomBound);
+                mMainBoxBounds.set((int)(mCenterY / 8) + xAnnotationOffset, bound - (int)(mCenterY / 3), (int)(2 * mCenterX) - (int)(mCenterY / 8) + xAnnotationOffset, bound);
             }
             canvas.drawRect(mMainBoxBounds, mPrimaryBoxPaint);
             //canvas.drawLine(0, 0, 20, 20, mPrimaryBoxPaint);
