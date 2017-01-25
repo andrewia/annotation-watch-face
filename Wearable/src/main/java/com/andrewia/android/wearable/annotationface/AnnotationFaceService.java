@@ -73,7 +73,7 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
 
         private static final float CENTER_GAP_AND_CIRCLE_RADIUS = 4f;
 
-        private static final int SHADOW_RADIUS = 6;
+        private static final int SHADOW_RADIUS = 4;
 
         private Calendar mCalendar;
         private boolean mRegisteredTimeZoneReceiver = false;
@@ -481,19 +481,19 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
             }
             */
 
-            //TODO: Top/bottom doesn't raise/lower far enough
+            //TODO: Annotation box moves too far in each direction
             //TODO: Make offset actually scoot box left and right with hand instead of just widening and narrowing
 
             int xAnnotationOffset = (int)(Math.sin(hoursRotation) * (mCenterY / 12));
             if(drawAnnotationBelowHourHand){
-                Log.i("ANTNDRAW", "Drawing annotation below hour hand");
-                int topBound = (int)(mCenterY + (Math.cos(hoursRotation) * sHourHandLength));
-                Log.i("ANTNDRAW", "Bottom bounds is " + topBound + " and x offset is " + xAnnotationOffset);
+                Log.i("ANNODRAW", "Drawing annotation below hour hand");
+                int topBound = (int)(mCenterY + (Math.sin(hoursRotation) * sHourHandLength));
+                Log.i("ANNODRAW", "Bottom bounds is " + topBound + " and x offset is " + xAnnotationOffset);
                 mMainBoxBounds.set(xAnnotationOffset, topBound, (int)(2 * mCenterX) - xAnnotationOffset, topBound + (int)(mCenterY / 3));
             } else{
-                Log.i("ANTNDRAW", "Drawing annotation above hour hand");
-                int bottomBound = (int)(mCenterY - (Math.cos(hoursRotation) * sHourHandLength));
-                Log.i("ANTNDRAW", "Bottom bounds is " + bottomBound + " and x offset is " + xAnnotationOffset);
+                Log.i("ANNODRAW", "Drawing annotation above hour hand");
+                int bottomBound = (int)(mCenterY - (Math.sin(hoursRotation) * sHourHandLength));
+                Log.i("ANNODRAW", "Bottom bounds is " + bottomBound + " and x offset is " + xAnnotationOffset);
                 mMainBoxBounds.set(xAnnotationOffset, bottomBound - (int)(mCenterY / 3), (int)(2 * mCenterX) - xAnnotationOffset, bottomBound);
             }
             canvas.drawRect(mMainBoxBounds, mPrimaryBoxPaint);

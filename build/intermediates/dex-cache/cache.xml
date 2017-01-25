@@ -79,7 +79,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="00945b987a33d9fe5a2447ae56501f8675b265d4">
+        sha1="d8393f39fc70ac4ac6d228cc275cd9d6e4976bcc">
         <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_9d4a8add454082bd320b8e7b3fee7c7d3515e66d\classes.dex" />
     </item>
     <item
@@ -142,7 +142,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="6f39f670c90887745c32d891d8975850b971bc28">
+        sha1="b9ef222d3d7ffe065f7ad5b937a7b2dfa9bda3c1">
         <dex dex="C:\Users\Admin\Desktop\Annotation Watch Face\Wearable\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_a7aac2deda8f6c030c3c984dc2d1062f0ecf2d36\classes.dex" />
     </item>
 
