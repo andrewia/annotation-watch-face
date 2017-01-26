@@ -36,6 +36,7 @@ import android.support.wearable.watchface.CanvasWatchFaceService;
 import android.support.wearable.watchface.WatchFaceService;
 import android.support.wearable.watchface.WatchFaceStyle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.SurfaceHolder;
 
 import java.util.Calendar;
@@ -66,12 +67,12 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
     private class Engine extends CanvasWatchFaceService.Engine {
         private static final int MSG_UPDATE_TIME = 0;
 
-        private static final float HOUR_STROKE_WIDTH = 5f;
-        private static final float MINUTE_STROKE_WIDTH = 3f;
+        private static final float HOUR_STROKE_WIDTH = 10f;
+        private static final float MINUTE_STROKE_WIDTH = 6f;
         //private static final float SECOND_TICK_STROKE_WIDTH = 2f;
         private static final float BOX_STROKE_WIDTH = 2f; // TODO: Test 1 and 2 widths
 
-        private static final float CENTER_GAP_AND_CIRCLE_RADIUS = 4f;
+        private static final float CENTER_GAP_AND_CIRCLE_RADIUS = 10f;
 
         private static final int SHADOW_RADIUS = 4;
 
@@ -97,6 +98,7 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
         private Paint mTickAndCirclePaint;
         private Paint mPrimaryBoxPaint;
         private Paint mSecondaryBoxPaint;
+        private Paint mTextPaint;
 
         private Paint mBackgroundPaint;
         private Bitmap mBackgroundBitmap;
@@ -148,7 +150,11 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
             super.onCreate(holder);
 
             setWatchFaceStyle(new WatchFaceStyle.Builder(AnnotationFaceService.this)
-                    .setCardPeekMode(WatchFaceStyle.PEEK_MODE_SHORT)
+                    .setAmbientPeekMode(WatchFaceStyle.AMBIENT_PEEK_MODE_HIDDEN)
+                    .setCardPeekMode(WatchFaceStyle.PEEK_MODE_NONE)
+                    //.setCardPeekMode(WatchFaceStyle.PEEK_MODE_SHORT)
+                    .setHotwordIndicatorGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL)
+                    .setStatusBarGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL)
                     .setBackgroundVisibility(WatchFaceStyle.BACKGROUND_VISIBILITY_INTERRUPTIVE)
                     .setShowSystemUiTime(false)
                     .build());
@@ -187,15 +193,23 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
             mPrimaryBoxPaint.setColor(mWatchHandColor);
             mPrimaryBoxPaint.setStrokeWidth(BOX_STROKE_WIDTH);
             mPrimaryBoxPaint.setAntiAlias(true);
-            mPrimaryBoxPaint.setStyle(Paint.Style.STROKE); // TODO: Fill as well?
+            mPrimaryBoxPaint.setStyle(Paint.Style.STROKE);
             mPrimaryBoxPaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
 
             mSecondaryBoxPaint = new Paint();
             mSecondaryBoxPaint.setColor(mWatchHandColor);
             mSecondaryBoxPaint.setStrokeWidth(BOX_STROKE_WIDTH);
             mSecondaryBoxPaint.setAntiAlias(true);
-            mSecondaryBoxPaint.setStyle(Paint.Style.STROKE); // TODO: Fill as well?
+            mSecondaryBoxPaint.setStyle(Paint.Style.STROKE);
             mSecondaryBoxPaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
+
+            mTextPaint = new Paint();
+            mTextPaint.setColor(mWatchHandColor);
+            mTextPaint.setStrokeWidth(BOX_STROKE_WIDTH);
+            mTextPaint.setAntiAlias(true);
+            mTextPaint.setStyle(Paint.Style.FILL);
+            mTextPaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
+            mTextPaint.setTextSize(48);
 
             /* Extract colors from background image to improve watchface style. */
             Palette.generateAsync(
@@ -490,12 +504,19 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
             //Log.i("ANNOCALC", "General bound is " + bound + " from center " + mCenterY + " and length " + sHourHandLength + " calculated into y offset " + (Math.cos(Math.toRadians(hoursRotation)) * sHourHandLength));
             //Log.i("ANNOCALC", "Cosine operation results in " + Math.cos(hoursRotation));
             if(drawAnnotationBelowHourHand){
-                mMainBoxBounds.set((int)(mCenterY / 8) + xAnnotationOffset, bound, (int)(2 * mCenterX) - (int)(mCenterY / 8) + xAnnotationOffset, bound + (int)(mCenterY / 3));
+                mMainBoxBounds.set((int)(mCenterY / 8) + xAnnotationOffset, bound, (int)(2 * mCenterX) - (int)(mCenterX / 8) + xAnnotationOffset, bound + (int)(mCenterY / 3));
             } else{
                 mMainBoxBounds.set((int)(mCenterY / 8) + xAnnotationOffset, bound - (int)(mCenterY / 3), (int)(2 * mCenterX) - (int)(mCenterY / 8) + xAnnotationOffset, bound);
             }
             canvas.drawRect(mMainBoxBounds, mPrimaryBoxPaint);
             //canvas.drawLine(0, 0, 20, 20, mPrimaryBoxPaint);
+
+            canvas.drawText(
+                    "NOT SET UP",
+                    mMainBoxBounds.left + 8,
+                    mMainBoxBounds.bottom - 8,
+                    mTextPaint);
+
 
             // TODO: Work out secondary annotation box
 
