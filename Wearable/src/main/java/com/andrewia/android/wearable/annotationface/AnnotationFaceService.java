@@ -89,13 +89,15 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
 
         /* Colors for all hands (hour, minute, seconds, ticks) based on photo loaded. */
         private int mWatchHandColor;
+        private int mTextContrastColor;
         //private int mWatchHandHighlightColor;
         private int mWatchHandShadowColor;
 
         private Paint mHourPaint;
         private Paint mMinutePaint;
         //private Paint mSecondPaint;
-        private Paint mTickAndCirclePaint;
+        private Paint mTickPaint;
+        private Paint mCenterAnnotationPaint;
         private Paint mPrimaryBoxPaint;
         private Paint mSecondaryBoxPaint;
         private Paint mTextPaint;
@@ -152,9 +154,9 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
             setWatchFaceStyle(new WatchFaceStyle.Builder(AnnotationFaceService.this)
                     .setAmbientPeekMode(WatchFaceStyle.AMBIENT_PEEK_MODE_HIDDEN)
                     .setCardPeekMode(WatchFaceStyle.PEEK_MODE_NONE)
-                    //.setCardPeekMode(WatchFaceStyle.PEEK_MODE_SHORT)
+                    //.setCardPeekMode(WatchFaceStyle.PEEK_MODE_SHORT) //TODO: Reenable cards after making room for peek
                     .setHotwordIndicatorGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL)
-                    .setStatusBarGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL)
+                    .setStatusBarGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL) //TODO: Dynamically move to make way for annotation, or move to top or side corner, and draw protective shade around icons
                     .setBackgroundVisibility(WatchFaceStyle.BACKGROUND_VISIBILITY_INTERRUPTIVE)
                     .setShowSystemUiTime(false)
                     .build());
@@ -165,6 +167,7 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
 
             /* Set defaults for colors */
             mWatchHandColor = Color.WHITE;
+            mTextContrastColor = Color.BLACK;
             //mWatchHandHighlightColor = Color.RED;
             mWatchHandShadowColor = Color.BLACK;
 
@@ -172,44 +175,50 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
             mHourPaint.setColor(mWatchHandColor);
             mHourPaint.setStrokeWidth(HOUR_STROKE_WIDTH);
             mHourPaint.setAntiAlias(true);
-            mHourPaint.setStrokeCap(Paint.Cap.ROUND);
+            mHourPaint.setStrokeCap(Paint.Cap.SQUARE);
             mHourPaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
 
             mMinutePaint = new Paint();
             mMinutePaint.setColor(mWatchHandColor);
             mMinutePaint.setStrokeWidth(MINUTE_STROKE_WIDTH);
             mMinutePaint.setAntiAlias(true);
-            mMinutePaint.setStrokeCap(Paint.Cap.ROUND);
+            mMinutePaint.setStrokeCap(Paint.Cap.SQUARE);
             mMinutePaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
 
-            mTickAndCirclePaint = new Paint();
-            mTickAndCirclePaint.setColor(mWatchHandColor);
-            mTickAndCirclePaint.setStrokeWidth(MINUTE_STROKE_WIDTH);
-            mTickAndCirclePaint.setAntiAlias(true);
-            mTickAndCirclePaint.setStyle(Paint.Style.STROKE);
-            mTickAndCirclePaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
+            mTickPaint = new Paint();
+            mTickPaint.setColor(mWatchHandColor);
+            mTickPaint.setStrokeWidth(MINUTE_STROKE_WIDTH);
+            mTickPaint.setAntiAlias(true);
+            mTickPaint.setStyle(Paint.Style.STROKE);
+            mTickPaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
+
+            mCenterAnnotationPaint = new Paint();
+            mCenterAnnotationPaint.setColor(mWatchHandColor);
+            mCenterAnnotationPaint.setStrokeWidth(MINUTE_STROKE_WIDTH);
+            mCenterAnnotationPaint.setAntiAlias(true);
+            mCenterAnnotationPaint.setStyle(Paint.Style.STROKE);
+            mCenterAnnotationPaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
 
             mPrimaryBoxPaint = new Paint();
             mPrimaryBoxPaint.setColor(mWatchHandColor);
             mPrimaryBoxPaint.setStrokeWidth(BOX_STROKE_WIDTH);
             mPrimaryBoxPaint.setAntiAlias(true);
-            mPrimaryBoxPaint.setStyle(Paint.Style.STROKE);
+            mPrimaryBoxPaint.setStyle(Paint.Style.FILL);
             mPrimaryBoxPaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
 
             mSecondaryBoxPaint = new Paint();
             mSecondaryBoxPaint.setColor(mWatchHandColor);
             mSecondaryBoxPaint.setStrokeWidth(BOX_STROKE_WIDTH);
             mSecondaryBoxPaint.setAntiAlias(true);
-            mSecondaryBoxPaint.setStyle(Paint.Style.STROKE);
+            mSecondaryBoxPaint.setStyle(Paint.Style.FILL);
             mSecondaryBoxPaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
 
             mTextPaint = new Paint();
-            mTextPaint.setColor(mWatchHandColor);
+            mTextPaint.setColor(mTextContrastColor);
             mTextPaint.setStrokeWidth(BOX_STROKE_WIDTH);
             mTextPaint.setAntiAlias(true);
             mTextPaint.setStyle(Paint.Style.FILL);
-            mTextPaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
-            mTextPaint.setTextSize(48);
+            mTextPaint.setTextSize(48); //TODO: Dynamic text sizing
 
             /* Extract colors from background image to improve watchface style. */
             Palette.generateAsync(
@@ -224,6 +233,7 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
 
                                 //mWatchHandHighlightColor = palette.getVibrantColor(Color.RED);
                                 mWatchHandColor = palette.getLightVibrantColor(Color.WHITE);
+                                mTextContrastColor = palette.getDarkVibrantColor(Color.BLACK);
                                 mWatchHandShadowColor = palette.getDarkMutedColor(Color.BLACK);
                                 updateWatchHandStyle();
                             }
@@ -275,17 +285,25 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
                 mHourPaint.setColor(Color.WHITE);
                 mMinutePaint.setColor(Color.WHITE);
                 //mSecondPaint.setColor(Color.WHITE);
-                mTickAndCirclePaint.setColor(Color.WHITE);
+                mTickPaint.setColor(Color.WHITE);
+                mPrimaryBoxPaint.setColor(Color.TRANSPARENT);
+                mSecondaryBoxPaint.setColor(Color.TRANSPARENT);
+                mTextPaint.setColor(Color.WHITE);
 
-                mHourPaint.setAntiAlias(false);
+                //TODO: Only disable AA for low-bit ambient mode,
+                // and add setting to reenable AA in low-bit to emulate Sony's grayscale behavior
+
+                /*mHourPaint.setAntiAlias(false);
                 mMinutePaint.setAntiAlias(false);
                 //mSecondPaint.setAntiAlias(false);
-                mTickAndCirclePaint.setAntiAlias(false);
+                mTickPaint.setAntiAlias(false);*/
 
                 mHourPaint.clearShadowLayer();
                 mMinutePaint.clearShadowLayer();
                 //mSecondPaint.clearShadowLayer();
-                mTickAndCirclePaint.clearShadowLayer();
+                mTickPaint.clearShadowLayer();
+                mPrimaryBoxPaint.clearShadowLayer();
+                mSecondaryBoxPaint.clearShadowLayer();
 
             } else {
                 mHourPaint.setColor(mWatchHandColor);
@@ -294,17 +312,18 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
                 mPrimaryBoxPaint.setColor(mWatchHandColor);
                 mSecondaryBoxPaint.setColor(mWatchHandColor);
                 //mSecondPaint.setColor(mWatchHandHighlightColor);
-                mTickAndCirclePaint.setColor(mWatchHandColor);
+                mTickPaint.setColor(mWatchHandColor);
+                mTextPaint.setColor(mTextContrastColor);
 
                 mHourPaint.setAntiAlias(true);
                 mMinutePaint.setAntiAlias(true);
                 //mSecondPaint.setAntiAlias(true);
-                mTickAndCirclePaint.setAntiAlias(true);
+                mTickPaint.setAntiAlias(true);
 
                 mHourPaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
                 mMinutePaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
                 //mSecondPaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
-                mTickAndCirclePaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
+                mTickPaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
                 mPrimaryBoxPaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
                 mSecondaryBoxPaint.setShadowLayer(SHADOW_RADIUS, 0, 0, mWatchHandShadowColor);
             }
@@ -314,6 +333,8 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
         public void onInterruptionFilterChanged(int interruptionFilter) {
             super.onInterruptionFilterChanged(interruptionFilter);
             boolean inMuteMode = (interruptionFilter == WatchFaceService.INTERRUPTION_FILTER_NONE);
+
+            //TODO: Change this behavior?
 
             /* Dim display in mute mode. */
             if (mMuteMode != inMuteMode) {
@@ -346,7 +367,7 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
 
             /*
              * Calculate size of annotation rectangles.
-             * Annotations are 1/6 screen height and 1/3 screen width
+             * Annotations are 1/6 screen height and 1/3 screen width.
              */
             annotationHeight = height / 6f;
             annotationWidth = width / 3f;
@@ -365,7 +386,7 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
              * protection (slight movements in pixels, not great for images going all the way to
              * edges) and low ambient mode (degrades image quality).
              *
-             * Also, if your watch face will know about all images ahead of time (users aren't
+             * Also, if the watch face will know about all images ahead of time (users aren't
              * selecting their own photos for the watch face), it will be more
              * efficient to create a black/white version (png, etc.) and load that when you need it.
              */
@@ -405,9 +426,10 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
             }
 
             /*
-             * Draw ticks. Usually you will want to bake this directly into the photo, but in
-             * cases where you want to allow users to select their own photos, this dynamically
-             * creates them on top of the photo.
+             * Draw ticks. Most efficient to bake this directly into the photo, but in
+             * cases where users to select their own photos, this dynamically
+             * creates them on top of the photo.  I'll keep it this way to avoid issues
+             * with nonsquare watches and other stuff.
              */
             float innerTickRadius = mCenterX - 10;
             float outerTickRadius = mCenterX;
@@ -418,7 +440,7 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
                 float outerX = (float) Math.sin(tickRot) * outerTickRadius;
                 float outerY = (float) -Math.cos(tickRot) * outerTickRadius;
                 canvas.drawLine(mCenterX + innerX, mCenterY + innerY,
-                        mCenterX + outerX, mCenterY + outerY, mTickAndCirclePaint);
+                        mCenterX + outerX, mCenterY + outerY, mTickPaint);
             }
 
             /*
@@ -432,16 +454,15 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
 
             final float hourHandOffset = mCalendar.get(Calendar.MINUTE) / 2f;
             final float hoursRotation = (mCalendar.get(Calendar.HOUR) * 30) + hourHandOffset;
-            Log.i("ANNOCALC", "Hour hand rotation is " + hoursRotation);
-
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "Hour hand rotation is " + hoursRotation);
+            }
             /*
              * Find appropriate locations for the annotation boxes.
              * 0 corresponds to left side, 1 corresponds to bottom side, etc.
              */
 
-            /*Log.i("DRAWCALC", "minutesRotation is " + minutesRotation);
-            Log.i("DRAWCALC", "hoursRotation is " + hoursRotation + " including offset " + hourHandOffset);
-            final boolean[] available = new boolean[4];
+            /*final boolean[] available = new boolean[4];
             // Go through positions and mark available if unoccupied
             if(minutesRotation < 45 && hoursRotation < 45 && minutesRotation > 135 && hoursRotation > 135) {
                 available[0] = true;
@@ -466,50 +487,22 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
             }
             */
 
-            /*
-            * New idea: have annotation at top of hour hand
-            */
-
             boolean drawAnnotationBelowHourHand = false;
             if(hoursRotation > 90 && hoursRotation < 270){
                 drawAnnotationBelowHourHand = true;
             }
 
-            /*
-             * Draw the annotation boxes in the appropriate locations.
-             */
-            /*switch(mainAnnotationQuadrant) {
-                case -1:
-                    // Do nothing since there is no room to drawn a box
-                case 0:
-                    mMainBoxBounds.set((int)(mCenterX + (mCenterX / 12)), (int)(mCenterY - (mCenterY / 12)),
-                            (int)(mCenterX * 2), (int)(mCenterY + (mCenterY / 12)) );
-                case 1:
-                    mMainBoxBounds.set((int)(mCenterX - (mCenterX / 6)), (int)(mCenterY + (mCenterY / 6)),
-                            (int)(mCenterX + (mCenterX / 6)), (int)(mCenterY * 2) );
-                case 2:
-                    mMainBoxBounds.set((int)(0), (int)(mCenterY - (mCenterY / 12)),
-                            (int)(mCenterX - (mCenterX / 12)), (int)(mCenterY + (mCenterY / 12)) );
-                case 3:
-                    mMainBoxBounds.set((int)(mCenterX - (mCenterX / 6)), (int)(0),
-                            (int)(mCenterX + (mCenterX / 6)), (int)(mCenterY - (mCenterY / 6)) );
-            }
-            */
-
-            //TODO: Fix bound calculation
-
-            int xAnnotationOffset = (int)(Math.sin((hoursRotation) * (mCenterY / 12)));
-            Log.i("ANNOCALC", "Annotation x offset is " + xAnnotationOffset);
             int bound = (int)(mCenterY - (Math.cos(Math.toRadians(hoursRotation)) * sHourHandLength));
-            //Log.i("ANNOCALC", "General bound is " + bound + " from center " + mCenterY + " and length " + sHourHandLength + " calculated into y offset " + (Math.cos(Math.toRadians(hoursRotation)) * sHourHandLength));
-            //Log.i("ANNOCALC", "Cosine operation results in " + Math.cos(hoursRotation));
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "General bound is " + bound + " from center " + mCenterY + " and length " + sHourHandLength + " calculated into y offset " + (Math.cos(Math.toRadians(hoursRotation)) * sHourHandLength));
+                Log.v(TAG, "Cosine operation results in " + Math.cos(hoursRotation));
+            }
             if(drawAnnotationBelowHourHand){
-                mMainBoxBounds.set((int)(mCenterY / 8) + xAnnotationOffset, bound, (int)(2 * mCenterX) - (int)(mCenterX / 8) + xAnnotationOffset, bound + (int)(mCenterY / 3));
+                mMainBoxBounds.set((int)(mCenterY / 8), bound, (int)(2 * mCenterX) - (int)(mCenterX / 8), bound + (int)(mCenterY / 3));
             } else{
-                mMainBoxBounds.set((int)(mCenterY / 8) + xAnnotationOffset, bound - (int)(mCenterY / 3), (int)(2 * mCenterX) - (int)(mCenterY / 8) + xAnnotationOffset, bound);
+                mMainBoxBounds.set((int)(mCenterY / 8), bound - (int)(mCenterY / 3), (int)(2 * mCenterX) - (int)(mCenterY / 8), bound);
             }
             canvas.drawRect(mMainBoxBounds, mPrimaryBoxPaint);
-            //canvas.drawLine(0, 0, 20, 20, mPrimaryBoxPaint);
 
             canvas.drawText(
                     "NOT SET UP",
@@ -518,7 +511,7 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
                     mTextPaint);
 
 
-            // TODO: Work out secondary annotation box
+            // TODO: Complete secondary annotation box
 
             canvas.save(); // Save the canvas state before we can begin to rotate it.
 
@@ -556,7 +549,7 @@ public class AnnotationFaceService extends CanvasWatchFaceService {
                     mCenterX,
                     mCenterY,
                     CENTER_GAP_AND_CIRCLE_RADIUS,
-                    mTickAndCirclePaint);
+                    mCenterAnnotationPaint);
 
             /* Restore the canvas' original orientation. */
             canvas.restore();
